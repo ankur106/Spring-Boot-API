@@ -1,11 +1,11 @@
 package com.exam.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.data.repository.cdi.Eager;
+
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "users")
@@ -23,15 +23,15 @@ public class User {
     private boolean enabled = true;
     private String profile;
 
-    // each user can have many roles like admin, faculty, etc
+    // each user can have one role like student or faculty
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserRole> userRole;
 
     public User() {
     }
 
-    public User(Long id, String email, String password, String firstName, String lastName, String phone, boolean enabled, String profile, Set<UserRole> userRoles) {
+    public User(Long id, String email, String password, String firstName, String lastName, String phone, boolean enabled, String profile, Set<UserRole> userRole) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -40,7 +40,7 @@ public class User {
         this.phone = phone;
         this.enabled = enabled;
         this.profile = profile;
-        this.userRoles = userRoles;
+        this.userRole = userRole;
     }
 
     public Long getId() {
@@ -107,11 +107,11 @@ public class User {
         this.profile = profile;
     }
 
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
+    public Set<UserRole> getUserRole() {
+        return userRole;
     }
 
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
     }
 }

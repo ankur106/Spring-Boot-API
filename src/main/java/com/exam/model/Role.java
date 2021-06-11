@@ -1,8 +1,8 @@
 package com.exam.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "roles")
@@ -13,16 +13,24 @@ public class Role {
     private String roleName;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
-    private Set<UserRole> userRoles = new HashSet<>();
+    private Set<UserRole> userRole;
 
 
     public Role() {
     }
 
-    public Role(Long roleId, String roleName, Set<UserRole> userRoles) {
+    public Set<UserRole> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
+    }
+
+    public Role(Long roleId, String roleName, Set<UserRole> userRole) {
         this.roleId = roleId;
         this.roleName = roleName;
-        this.userRoles = userRoles;
+        this.userRole = userRole;
     }
 
     public Long getRoleId() {
@@ -41,11 +49,5 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
-    }
 
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
 }
