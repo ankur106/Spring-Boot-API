@@ -22,7 +22,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
         User local = this.userRepository.findByEmail(user.getEmail());
-        if(local!= null) {
+        User local1 = this.userRepository.findByusername(user.getUsername());
+        if(local!= null || local1!=null) {
             System.out.println("User present");
             throw new Exception("User present");
         } else {
