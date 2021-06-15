@@ -12,6 +12,7 @@ import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -30,12 +31,17 @@ public class UserServiceImpl implements UserService {
                 roleRepository.save(ur.getRole());
             }
 
+<<<<<<< HEAD
             user.setUserRole(userRoles);
+=======
+            user.getUserRole().addAll(userRoles);
+>>>>>>> 733d3edb0458e08949935dfb0ef72942c55b3b6b
             local = this.userRepository.save(user);
         }
         return local;
     }
 
+<<<<<<< HEAD
     //getting user by email
     @Override
     public User getUser(String email) {
@@ -48,5 +54,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         this.userRepository.deleteById(id);
+=======
+    //getting user by username
+    @Override
+    public User getUser(String username) {
+        return this.userRepository.findByusername(username);
+>>>>>>> 733d3edb0458e08949935dfb0ef72942c55b3b6b
     }
+
+    @Override
+    public void deleteUser(Long userId) {
+        this.userRepository.deleteById(userId);
+    }
+
+
 }

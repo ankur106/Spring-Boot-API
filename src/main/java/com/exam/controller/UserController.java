@@ -1,6 +1,9 @@
 package com.exam.controller;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 733d3edb0458e08949935dfb0ef72942c55b3b6b
 import com.exam.model.Role;
 import com.exam.model.User;
 import com.exam.model.UserRole;
@@ -13,12 +16,19 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/user")
+<<<<<<< HEAD
 public class UserController {
+=======
+@CrossOrigin("*")
+public class UserController {
+
+>>>>>>> 733d3edb0458e08949935dfb0ef72942c55b3b6b
     @Autowired
     private UserService userService;
 
     //creating user
     @PostMapping("/")
+<<<<<<< HEAD
     public User createUser(@RequestBody User user) throws Exception {
         Set<UserRole> roles = new HashSet<>();
         Role role = new Role();
@@ -44,3 +54,35 @@ public class UserController {
     }
 }
 
+=======
+    public User creatUser(@RequestBody User user) throws Exception {
+
+
+        Set<UserRole> roles  = new HashSet<>();
+
+        Role role1 = new Role();
+        role1.setRoleId(2L);
+        role1.setRoleName("Normal");
+
+        UserRole userrole = new UserRole();
+        userrole.setUser(user);
+        userrole.setRole(role1);
+
+        roles.add(userrole);
+
+        return this.userService.createUser(user,roles);
+
+    }
+
+    @GetMapping("/{username}")
+    public User getUser(@PathVariable("username") String username){
+        return this.userService.getUser(username);
+    }
+
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable("userId") Long userId){
+        this.userService.deleteUser(userId);
+    }
+
+}
+>>>>>>> 733d3edb0458e08949935dfb0ef72942c55b3b6b
