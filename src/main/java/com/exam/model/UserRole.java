@@ -9,7 +9,8 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userRoleId;
 
-    //each role can have only one user - many to one
+    //user
+
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
@@ -17,12 +18,6 @@ public class UserRole {
     private Role role;
 
     public UserRole() {
-    }
-
-    public UserRole(Long userRoleId, User user, Role role) {
-        this.userRoleId = userRoleId;
-        this.user = user;
-        this.role = role;
     }
 
     public Long getUserRoleId() {
