@@ -13,14 +13,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class ExamserverApplication implements CommandLineRunner {
+public class ExamServerApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserService userService;
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(ExamserverApplication.class, args);
+		SpringApplication.run(ExamServerApplication.class, args);
 
 
 

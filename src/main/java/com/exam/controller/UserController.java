@@ -20,23 +20,23 @@ public class UserController {
 
     //creating user
     @PostMapping("/")
-    public User creatUser(@RequestBody User user) throws Exception {
+    public User createUser(@RequestBody User user) throws Exception {
 
+        user.setProfile("dafault.png");
 
-        Set<UserRole> roles  = new HashSet<>();
+        Set<UserRole> userRoleSet = new HashSet<>();
 
-        Role role1 = new Role();
-        role1.setRoleId(2L);
-        role1.setRoleName("Normal");
+        Role role = new Role();
+        role.setRoleId(45L);
+        role.setRoleName("NORMAL");
 
-        UserRole userrole = new UserRole();
-        userrole.setUser(user);
-        userrole.setRole(role1);
+        UserRole userRole = new UserRole();
+        userRole.setUser(user);
+        userRole.setRole(role);
 
-        roles.add(userrole);
+        userRoleSet.add(userRole);
 
-        return this.userService.createUser(user,roles);
-
+        return this.userService.createUser(user, userRoleSet);
     }
 
     @GetMapping("/{username}")
@@ -48,5 +48,4 @@ public class UserController {
     public void deleteUser(@PathVariable("userId") Long userId){
         this.userService.deleteUser(userId);
     }
-
 }

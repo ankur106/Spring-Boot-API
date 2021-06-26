@@ -22,8 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user, Set<UserRole> userRoles) throws Exception {
         User local = this.userRepository.findByEmail(user.getEmail());
-        User local1 = this.userRepository.findByusername(user.getUsername());
-        if(local!= null || local1!=null) {
+        if(local!= null) {
             System.out.println("User present");
             throw new Exception("User present");
         } else {
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService {
                 roleRepository.save(ur.getRole());
             }
 
-            user.getUserRole().addAll(userRoles);
+            user.getUserRoles().addAll(userRoles);
             local = this.userRepository.save(user);
         }
         return local;
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
     //getting user by username
     @Override
     public User getUser(String username) {
-        return this.userRepository.findByusername(username);
+        return this.userRepository.findByUsername(username);
     }
 
     @Override
