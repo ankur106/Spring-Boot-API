@@ -27,7 +27,7 @@ public class UserController {
         Set<UserRole> userRoleSet = new HashSet<>();
 
         Role role = new Role();
-        role.setRoleId(45L);
+        role.setRoleId(46L);
         role.setRoleName("NORMAL");
 
         UserRole userRole = new UserRole();
