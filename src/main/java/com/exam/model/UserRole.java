@@ -1,18 +1,26 @@
 package com.exam.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userRoleId;
 
-    //each role can have only one user - many to one
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
-    @ManyToOne
+    @ManyToOne()
     private Role role;
 }
